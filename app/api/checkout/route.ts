@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: process.env.APP_URL,
       cancel_url: process.env.APP_URL,
-      payment_method_types: ['card'],
+      allowed_payment_method_types: ['card'],
 
       mode: 'subscription',
       billing_address_collection: 'auto',
@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       line_items: [
         {
           price_data: {
-            currency: 'USD',
+            currency: 'usd',
             product_data: {
               name: 'Your SaaS Subscription Name',
               description: 'Saas Subscription Description'
